@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,23 @@
     <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
+
 <body>
-    <h1>HELLO</h1>
-    <script type="text/javascript">
-        Vue.config.productionTip = false
-    </script>
+    <div id="demo1" class="hello">
+        <h1>姓名：{{name}}</h1>
+        <h1>年龄：{{age}}</h1>
+    </div>
 </body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    new Vue({
+        el: '.hello',
+        data: {
+            name: 'Jack',
+            age: 18,
+            high: 180
+        }
+    })
+</script>
+
 </html>
