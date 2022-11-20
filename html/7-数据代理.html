@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据代理</title>
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+<div id="demo1">
+    <h1>HTML的数据代理</h1>
+    <h5>在控制台修改jack.age和rose.age查看相关交互</h5><br>
+</div>
+<div id="demo2">
+    <h1>Vue的数据代理</h1>
+    <label>
+        <h5>name:</h5>
+        <input type="text" v-model="name">
+    </label><br>
+    <label>
+        <h5>age:</h5>
+        <input type="text" v-model="age">
+    </label><br>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    //数据
+    let jack = {
+        name: 'Jack',
+        age: 18
+    }
+    //HTML的数据代理
+    let rose = {
+        name: 'Rose'
+    }
+    Object.defineProperty(rose, 'age', {
+        // value: weight,
+        // enumerable: true,
+        // writable: true,
+        // configurable: true,
+        get() {
+            console.log('获取weight属性')
+            return jack.age
+        },
+        set(value) {
+            console.log('修改weight属性')
+            jack.age = value
+        }
+    })
+    //Vue的数据代理
+    const vm = new Vue({
+        el: '#demo2',
+        data: jack
+    })
+</script>
+
+</html>
