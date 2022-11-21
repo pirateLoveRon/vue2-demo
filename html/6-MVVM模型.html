@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM模型</title>
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!--
+    M:Model 需要展示的数据（Vue实例data入参接收的json数据）
+    V:View  页面展示（body里面的div）
+    VM:ViewModel    Vue实例
+-->
+<body>
+<div id="div1">
+    <h1>{{name}}</h1>
+    <h1>{{age}}</h1>
+    <h1>{{$options}}</h1>
+    <h1>{{__proto__.constructor}}</h1>
+</div>
+</body>
+<script type="text/javascript">
+    //关闭VUE生产包校验提示
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#div1',
+        data() {
+            return {
+                name: 'Jack',
+                age: 18
+            }
+        }
+    })
+</script>
+
+</html>
