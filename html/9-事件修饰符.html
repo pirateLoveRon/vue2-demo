@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1" @click="showMsg('div1')">
+    <div id="div1-1" @click="showMsg('div1-1')">
+        <!--prevent 阻止默认事件-->
+        <a href="https://www.baidu.com" @click.prevent="showMsg('a')">prevent</a><br>
+        <!--stop 阻止事件冒泡-->
+        <button @click.stop="showMsg('btn')">stop</button>
+        <br>
+        <!--once 事件只触发一次-->
+        <button @click.once="showMsg('btn')">once</button>
+        <br>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //关闭VUE生产包校验提示
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: "#div1",
+        methods: {
+            showMsg(msg) {
+                console.log(msg)
+            }
+        }
+    })
+</script>
+
+</html>
