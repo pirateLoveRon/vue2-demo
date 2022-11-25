@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方法实现</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <h3>姓：</h3>
+    <input type="text" v-model="firstName"/>
+    <h3>名：</h3>
+    <input type="text" v-model="lastName"/>
+    <h3>全名：</h3>
+    <!--这种方法如果遇到多次调用，会执行多次影响性能-->
+    <span>{{fullName()}}</span><br>
+    <span>{{fullName()}}</span><br>
+    <span>{{fullName()}}</span><br>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#div1',
+        data: {
+            firstName: 'alex',
+            lastName: 'mercer'
+        },
+        //methods被调用的情况：1.首次执行方法；2.方法内的数据发生变化，VUE重新读取模板
+        methods: {
+            fullName() {
+                console.log('fullName方法被执行')
+                return this.firstName + '-' + this.lastName
+            }
+        }
+    })
+</script>
+
+</html>

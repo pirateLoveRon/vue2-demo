@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <h3>姓：</h3>
+    <input type="text" v-model="firstName"/>
+    <h3>名：</h3>
+    <input type="text" v-model="lastName"/>
+    <h3>全名：</h3>
+    <!--计算属性会将返回值存在缓存，多次调用也不会影响性能-->
+    <span>{{fullName}}</span><br>
+    <span>{{fullName}}</span><br>
+    <span>{{fullName}}</span><br>
+    <!--计算属性还可以修改-->
+    <input type="text" :value="fullName" @focusout="fullName=$event.target.value"/>
+</div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#div1',
+        data: {
+            firstName: 'alex',
+            lastName: 'mercer'
+        },
+        computed: {
+            fullName: {
+                get() {
+                    console.log('fullName.get被执行')
+                    return this.firstName + '-' + this.lastName
+                },
+                set(v) {
+                    console.log('fullName.set被执行')
+                    if (v == null || v.indexOf('-') < 0)
+                        return
+                    const arr = v.split('-')
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                }
+            }
+        }
+    })
+</script>
+
+</html>
