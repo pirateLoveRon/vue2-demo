@@ -28,12 +28,15 @@
         el: '#div1',
         data: {
             firstName: 'alex',
-            lastName: 'mercer'
+            lastName: 'mercer',
+            x: 1
         },
         //methods被调用的情况：1.首次执行方法；2.方法内的数据发生变化，VUE重新读取模板
+        //x发生变化时，fullName方法也会被调用
         methods: {
             fullName() {
                 console.log('fullName方法被执行')
+                console.log(x)
                 return this.firstName + '-' + this.lastName
             }
         }

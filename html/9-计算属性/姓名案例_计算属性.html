@@ -30,12 +30,15 @@
         el: '#div1',
         data: {
             firstName: 'alex',
-            lastName: 'mercer'
+            lastName: 'mercer',
+            x: 1
         },
         computed: {
+            //x被修改时，fullName会重新执行get
             fullName: {
                 get() {
                     console.log('fullName.get被执行')
+                    console.log(this.x)
                     return this.firstName + '-' + this.lastName
                 },
                 set(v) {
