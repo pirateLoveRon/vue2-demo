@@ -31,10 +31,15 @@
         data: {
             firstName: 'alex',
             lastName: 'mercer',
-            x: 1
+            x: 1,
+            y: 1,
+            z: 1
         },
         computed: {
-            //x被修改时，fullName会重新执行get
+            //计算属性重新计算的情况：1.首次调用计算属性；2.get方法中的变量发生变化
+            //x发生变化时，计算属性也会重新计算
+            //y发生变化时，计算属性不会重新计算
+            //z发生变化时，计算属性不会重新计算
             fullName: {
                 get() {
                     console.log('fullName.get被执行')
@@ -43,6 +48,7 @@
                 },
                 set(v) {
                     console.log('fullName.set被执行')
+                    console.log(this.y)
                     if (v == null || v.indexOf('-') < 0)
                         return
                     const arr = v.split('-')
