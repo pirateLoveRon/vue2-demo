@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="demo1">
+    <h5>单向数据绑定：</h5>
+    <label>
+        <input type="text" v-bind:value="name"/>
+    </label>
+    <label>
+        <input type="text" v-bind:value="name"/>
+    </label><br>
+    <h5>双向数据绑定：</h5>
+    <label>
+        <input type="text" v-model:value="age"/> // v-model 只能且默认用于value属性上
+    </label>
+    <label>
+        <input type="text" v-model="age">
+    </label>
+</div>
+</body>
+<script type="text/javascript">
+    //关闭VUE生产包校验提示
+    Vue.config.productionTip = false
+    new Vue({
+        el: '#demo1',
+        data: {
+            name: 'Jack',
+            age: 18
+        }
+    })
+</script>
+
+</html>
