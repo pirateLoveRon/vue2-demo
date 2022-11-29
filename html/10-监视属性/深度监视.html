@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度监视</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <input type="text" v-model="jack.name"><br>
+    <input type="text" v-model="jack.age"><br>
+    <input type="number" v-model="jack.a.b.c"><br>
+    <input type="text" v-model="rose.name"><br>
+    <input type="text" v-model="rose.age"><br>
+</div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el: '#div1',
+        data: {
+            jack: {
+                name: 'Jack',
+                age: 18,
+                a: {
+                    b: {
+                        c: 1
+                    }
+                },
+                wife: this.rose
+            },
+            rose: {
+                name: 'Rose',
+                age: 18
+            }
+        },
+        watch: {
+            jack: {
+                deep: true,
+                handler(newVal, oldVal) {
+                    console.log('jack改变了')
+                }
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>监控属性</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <h3>今天天气很{{feel}}</h3>
+    <button v-on:click="changeWeather">切换天气</button>
+</div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el: '#div1',
+        data: {
+            isHot: true
+        },
+        methods: {
+            changeWeather() {
+                this.isHot = !this.isHot
+            }
+        },
+        computed: {
+            feel() {
+                return this.isHot ? '炎热' : '寒冷'
+            }
+        },
+        watch: {
+            feel: {
+                handler(newVal, oldVal) {
+                    console.log('之前' + newVal, '现在' + oldVal)
+                }
+            }
+            //简写方式，适合只有handler方法的场景，其他deep等属性均为默认值
+            /*feel(newVal, oldVal) {
+                console.log('之前' + newVal, '现在' + oldVal)
+            }*/
+        }
+    })
+</script>
+
+</html>
