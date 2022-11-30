@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<style>
+    .basic {
+        border-style: solid;
+        height: 100px;
+        width: 200px;
+        text-align: center;
+        vertical-align: auto;
+    }
+
+    .happy {
+        background-color: #ff50a2;
+    }
+
+    .sad {
+        background-color: grey;
+    }
+
+    .normal {
+        background-color: blue;
+    }
+
+    .style1 {
+        color: #c245ff;
+    }
+
+    .style2 {
+        border-radius: 10px;
+    }
+
+    .style3 {
+        background-color: #fffa39;
+    }
+</style>
+<body>
+<div id="div1">
+    <!--绑定class，字符串方法-->
+    <div class="basic" :class="classStr" @click="changeStr">字符串方法</div>
+    <br><br>
+    <!--绑定class，数组方法-->
+    <div class="basic" :class="classArr">数组方法</div>
+    <br><br>
+    <!--绑定class，对象方法-->
+    <div class="basic" :class="classObj">对象方法</div>
+    <br><br>
+    <button @click="changeObj('style1')">style1开关</button>
+    <button @click="changeObj('style2')">style2开关</button>
+    <button @click="changeObj('style3')">style3开关</button>
+    <br><br>
+    <!--绑定style，对象方法-->
+    <div class="basic" :style="styleObj">绑定style，对象方法</div>
+    <br><br>
+    <!--绑定style，数组方法-->
+    <div class="basic" :style="styleArr">绑定style，数组方法</div>
+    <br><br>
+</div>
+</body>
+<script type="text/javascript">
+    const obj = {name: 'jack'}
+    new Vue({
+        el: '#div1',
+        data: {
+            classStr: 'happy',
+            classArr: ['style1', 'style2', 'style3'],
+            classObj: {
+                style1: false,
+                style2: false,
+                style3: false
+            },
+            styleObj: {
+                fontSize: '30px'
+            },
+            styleArr: [
+                {
+                    fontSize: '30px'
+                }, {
+                    color: 'red'
+                }
+            ]
+        },
+        methods: {
+            changeStr() {
+                const arr = ['happy', 'sad', 'normal']
+                const index = Math.floor(Math.random() * 3)
+                this.classStr = arr[index]
+            },
+            changeObj(field) {
+                this.classObj[field] = !this.classObj[field]
+            }
+        }
+    })
+</script>
+
+</html>
