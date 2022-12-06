@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <h3>当前n的值{{n}}</h3>
+    <button type="button" @click="n++">点击n+1</button>
+    <!--v-show，当条件不符合时，元素会加上 display:none-->
+    <h1 v-show="n === 1">A</h1>
+    <h1 v-show="n === 2">B</h1>
+    <h1 v-show="n === 3">C</h1>
+    <hr>
+    <!--v-if、v-else-if、v-else，当条件不符合时，元素会直接删除-->
+    <h1 v-if="n===1">A</h1>
+    <h1 v-else-if="n===2">B</h1>
+    <h1 v-else-if="n===3">C</h1>
+    <h1 v-else-if="n===4">D</h1>
+    <h1 v-else>E</h1>
+    <hr>
+    <!--template只能用v-if、不能用v-show-->
+    <template v-if="n>5">
+        <h1>A</h1>
+        <h1>B</h1>
+        <h1>C</h1>
+    </template>
+</div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el: '#div1',
+        data: {
+            n: 0
+        }
+    })
+</script>
+
+</html>
