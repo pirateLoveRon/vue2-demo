@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <!--遍历数组-->
+    <ul>
+        <li v-for="p in persons" :key="p.id">
+            {{p.name}}-{{p.age}}
+        </li>
+    </ul>
+    <hr>
+    <!--遍历对象-->
+    <ul>
+        <li v-for="(v,k,index) in car" :key="index">
+            {{k}}-{{v}}-{{index}}
+        </li>
+    </ul>
+    <hr>
+    <!--遍历字符串-->
+    <ul>
+        <li v-for="(char,index) in str" :key="index">
+            {{char}}-{{index}}
+        </li>
+    </ul>
+    <hr>
+    <!--遍历次数-->
+    <ul>
+        <li v-for="(number,index) in 5" :key="index">
+            {{number}}-{{index}}
+        </li>
+    </ul>
+    <hr>
+</div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el: '#div1',
+        data: {
+            persons: [
+                {id: 1, name: 'Jack', age: 18},
+                {id: 2, name: 'Rose', age: 19},
+                {id: 3, name: 'Sen', age: 20},
+            ],
+            car: {
+                name: '传奇',
+                type: 'GS4',
+                year: 2022
+            },
+            str: 'hello'
+        }
+    })
+</script>
+
+</html>
