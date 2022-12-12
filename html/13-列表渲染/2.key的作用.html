@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的作用</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <button @click="addPerson">添加人员</button>
+    <hr>
+    <!--没有key-->
+    <ul>
+        <li v-for="p in persons">{{p.name+'-'+p.age}}<input type="text"></li>
+    </ul>
+    <hr>
+    <!--index作为key-->
+    <ul>
+        <li v-for="(p,index) in persons" :key="index">{{p.name+'-'+p.age}}<input type="text"></li>
+    </ul>
+    <hr>
+    <!--id作为key-->
+    <ul>
+        <li v-for="p in persons" :key="p.id">{{p.name+'-'+p.age}}<input type="text"></li>
+    </ul>
+    <hr>
+</div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el: '#div1',
+        data: {
+            persons: [
+                {id: 1, name: 'Jack', age: 18},
+                {id: 2, name: 'Rose', age: 19},
+                {id: 3, name: 'Jax', age: 20}
+            ],
+            id: 4
+        },
+        methods: {
+            addPerson() {
+                const personId = this.id++
+                this.persons.unshift({id: personId, name: 'wolf' + personId, age: 18 + personId})
+            }
+        }
+    })
+</script>
+
+</html>
