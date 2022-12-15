@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表筛选排序</title>
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+<div id="div1">
+    <input type="text" placeholder="请输入关键词" v-model="keyWords">
+    <button @click="sortAge=++sortAge%3">{{sortAge===0?'年龄原序':sortAge===1?'年龄正序':'年龄倒序'}}</button>
+    <ul>
+        <li v-for="p in fillPersons">{{p.name}}-{{p.age}}</li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el: '#div1',
+        data: {
+            keyWords: '',
+            persons: [
+                {id: 1, name: 'AB1', age: 45},
+                {id: 2, name: 'BC2', age: 38},
+                {id: 3, name: 'CD3', age: 25},
+                {id: 3, name: 'DE4', age: 52},
+                {id: 3, name: 'EF5', age: 15},
+            ],
+            sortAge: 0
+        },
+        computed: {
+            fillPersons() {
+                const arr = this.persons.filter((p) => {
+                    return p.name.indexOf(this.keyWords) !== -1
+                })
+                if (this.sortAge !== 0) {
+                    arr.sort((a, b) => {
+                        return this.sortAge === 1 ? a.age - b.age : b.age - a.age
+                    })
+                }
+                return arr
+            }
+        }
+    })
+</script>
+
+</html>
